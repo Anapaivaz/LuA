@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="moon.png" width="125px">
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="LuA.html">Inicio</a></li>
+                    <li><a href="products.html">Produtos</a></li>
+                    <li><a href="about.html">Sobre</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="accountpage.html">Conta</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="carr.png" width="30px" height="30px"></a>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <div class="row row-2">
+            <h2>Todos Produtos</h2>
+            <select>
+                <option>Todos</option>
+                <option>Menor preço</option>
+                <option>Maior preço</option>
+                <option>Relevantes</option>
+                <option>Populares</option>
+            </select>
+        </div>
+
+        <div class="row" id="product-list">
+            <div class="col-4">
+                <a href="productdetail.html?img=p1.png&price=R$79,90&title=Vestido Curto Floral Manga Flare Plus Size">
+                    <img src="p1.png">
+                </a>
+                <h4>Vestido Curto Floral Manga Flare Plus Size</h4>
+                <p>R$79,90</p>
+                <button onclick="addToCart('Vestido Curto Floral Manga Flare Plus Size', 79.90)">Adicionar ao Carrinho</button>
+            </div>
+        
+            <div class="col-4">
+                <a href="productdetail.html?img=p2.png&price=R$89,90&title=Conjunto Branco Duas Peças Cropped e Saia">
+                    <img src="p2.png">
+                </a>
+                <h4>Conjunto Branco Duas Peças Cropped e Saia</h4>
+                <p>R$89,90</p>
+                <button onclick="addToCart('Conjunto Branco Duas Peças Cropped e Saia', 89.90)">Adicionar ao Carrinho</button>
+            </div>
+        
+            <div class="col-4">
+                <a href="productdetail.html?img=p3.png&price=R$49,99&title=Vestido Vermelho Verão Tomara-que-caia">
+                    <img src="p3.png">
+                </a>
+                <h4>Vestido Vermelho Verão Tomara-que-caia</h4>
+                <p>R$49,99</p>
+                <button onclick="addToCart('Vestido Vermelho Verão Tomara-que-caia', 49.99)">Adicionar ao Carrinho</button>
+            </div>
+        
+            <div class="col-4">
+                <a href="productdetail.html?img=p4.png&price=R$34,99&title=Cropped Branco Alça Corrente Dourada">
+                    <img src="p4.png">
+                </a>
+                <h4>Cropped Branco Alça Corrente Dourada</h4>
+                <p>R$34,99</p>
+                <button onclick="addToCart('Cropped Branco Alça Corrente Dourada', 34.99)">Adicionar ao Carrinho</button>
+            </div>
+        
+            <div class="col-4">
+                <a href="productdetail.html?img=p5.png&price=R$99,90&title=Roupas Femininas Camisa Social Feminina">
+                    <img src="p5.png">
+                </a>
+                <h4>Roupas Femininas Camisa Social Feminina</h4>
+                <p>R$99,90</p>
+                <button onclick="addToCart('Roupas Femininas Camisa Social Feminina', 99.90)">Adicionar ao Carrinho</button>
+            </div>
+        
+            <div class="col-4">
+                <a href="productdetail.html?img=p6.png&price=R$99,90&title=Vestido cami impressão floral cruzada sem encosto">
+                    <img src="p6.png">
+                </a>
+                <h4>Vestido cami impressão floral cruzada sem encosto</h4>
+                <p>R$99,90</p>
+                <button onclick="addToCart('Vestido cami impressão floral cruzada sem encosto', 99.90)">Adicionar ao Carrinho</button>
+            </div>
+        
+            <div class="col-4">
+                <a href="productdetail.html?img=p7.png&price=R$119,90&title=Vestido Babados Bainha Assimétrica">
+                    <img src="p7.png">
+                </a>
+                <h4>Vestido Babados Bainha Assimétrica</h4>
+                <p>R$119,90</p>
+                <button onclick="addToCart('Vestido Babados Bainha Assimétrica', 119.90)">Adicionar ao Carrinho</button>
+            </div>
+        
+            <div class="col-4">
+                <a href="productdetail.html?img=p8.png&price=R$29,99&title=Regata Gola Alta Casual Feminino">
+                    <img src="p8.png">
+                </a>
+                <h4>Regata Gola Alta Casual Feminino</h4>
+                <p>R$29,99</p>
+                <button onclick="addToCart('Regata Gola Alta Casual Feminino', 29.99)">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+        
+       
+    <script>
+        // Carrinho armazenado em localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Função para adicionar produtos ao carrinho
+        function addToCart(productName, price) {
+            const existingProduct = cart.find(item => item.name === productName);
+            if (existingProduct) {
+                existingProduct.quantity++;
+            } else {
+                cart.push({ name: productName, price: price, quantity: 1 });
+            }
+            updateLocalStorage();
+            alert(`${productName} adicionado ao carrinho!`);
+        }
+
+        // Atualiza o localStorage
+        function updateLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    </script>
+
+</body>
+
+</html>
+
